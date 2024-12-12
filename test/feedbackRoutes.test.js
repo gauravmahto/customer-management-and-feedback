@@ -1,3 +1,4 @@
+// Import necessary modules and dependencies
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { app } from '../src/app.js';
@@ -6,11 +7,14 @@ import Feedback from '../src/models/feedback.js';
 const { expect } = chai;
 chai.use(chaiHttp);
 
+// Describe the Feedback Routes test suite
 describe('Feedback Routes', () => {
+  // Before running tests, clear the Feedback collection
   before(async () => {
     await Feedback.deleteMany({});
   });
 
+  // Test the GET /feedback route
   describe('GET /feedback', () => {
     it('should get all feedback', (done) => {
       chai.request(app)
@@ -23,6 +27,7 @@ describe('Feedback Routes', () => {
     });
   });
 
+  // Test the POST /feedback route
   describe('POST /feedback', () => {
     it('should create new feedback', (done) => {
       const feedback = {

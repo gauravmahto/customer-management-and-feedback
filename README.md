@@ -9,11 +9,11 @@ This project is designed to manage customer information and collect feedback eff
 - Customer feedback collection
 - Responsive UI using Tailwind CSS
 - MongoDB database integration
-- Unit testing with Jest
+- Unit testing with Mocha
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v20 or higher)
 - MongoDB (v4.4 or higher)
 - npm or yarn
 
@@ -33,8 +33,13 @@ To install the project, follow these steps:
     ```
 
 ## Setup
-
-1. Clone the repository:
+1. Create a `.env` file in the root directory and add the following environment variables:
+    ```properties
+    PORT=3000
+    MONGODB_URI=mongodb://localhost:27017/customer_management
+    TEST_MONGODB_URI=mongodb://localhost:27017/customer_management_test
+    NODE_ENV=development
+    ```
 
 ## Usage
 To start the application, run:
@@ -42,6 +47,13 @@ To start the application, run:
 npm start
 ```
 Open your browser and navigate to `http://localhost:3000` to access the application.
+
+## Running Tests
+To run the tests, use the following command:
+```bash
+npm test
+```
+Ensure that the server is running and the database is properly configured before running the tests.
 
 ## Contributing
 We welcome contributions! Please follow these steps to contribute:

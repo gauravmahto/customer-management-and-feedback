@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta tags and title -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Management</title>
+  <!-- Link to Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container mx-auto p-4">
+    <!-- Display error message if exists -->
     <% if (error) { %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
         <strong class="font-bold">Error:</strong>
@@ -19,7 +22,9 @@
         </span>
       </div>
     <% } %>
+    <!-- Customer management heading -->
     <h1 class="text-2xl font-bold mb-4">Customer Management</h1>
+    <!-- Form to create a new customer -->
     <form action="/customers" method="POST" class="space-y-4">
       <div>
         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>

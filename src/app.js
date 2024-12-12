@@ -11,13 +11,14 @@ dotenv.config();
 
 export const app = express();
 
-// Middleware
+// Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Set the view engine to EJS and specify the views directory
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -30,10 +31,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// Define routes
 app.use('/customers', customerRoutes);
 app.use('/feedback', feedbackRoutes);
 
+// Define the root route
 app.get('/', async (req, res) => {
   try {
     const customers = await Customer.find();
@@ -42,6 +44,11 @@ app.get('/', async (req, res) => {
     console.error('Error fetching customers:', err);
     res.render('index', { customers: [], error: 'Internal Server Error' });
   }
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).render('404');
 });
 
 // Start the server

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "mocha --require @babel/register 'test/**/*.test.js' --exit"
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register 'test/**/*.test.js' --exit"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
     "mocha": "^10.2.0",
-    "@babel/register": "^7.18.9"
+    "@babel/register": "^7.18.9",
+    "cross-env": "^7.0.3"
   }
 }

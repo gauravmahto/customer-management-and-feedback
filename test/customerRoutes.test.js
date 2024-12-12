@@ -8,12 +8,14 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 describe('Customer Routes', () => {
+  // Before all tests, clear the Customer and Feedback collections
   before(async () => {
     await Customer.deleteMany({});
     await Feedback.deleteMany({});
   });
 
   describe('GET /customers', () => {
+    // Test case for getting all customers
     it('should get all customers', (done) => {
       chai.request(app)
         .get('/customers')
@@ -26,6 +28,7 @@ describe('Customer Routes', () => {
   });
 
   describe('POST /customers', () => {
+    // Test case for creating a new customer
     it('should create a new customer', (done) => {
       const customer = {
         name: 'John Doe',
@@ -44,6 +47,7 @@ describe('Customer Routes', () => {
         });
     });
 
+    // Test case for handling missing required fields
     it('should return an error if required fields are missing', (done) => {
       const customer = {
         name: 'Jane Doe'

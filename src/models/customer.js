@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// Define the Customer schema
 const customerSchema = new mongoose.Schema({
   name: {
     type: String,
