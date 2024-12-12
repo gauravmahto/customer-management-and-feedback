@@ -6,8 +6,8 @@ const router = express.Router();
 // Get all feedback
 router.get('/', async (req, res) => {
   try {
-    const feedback = await Feedback.find();
-    res.status(200).json(feedback);
+    const feedbacks = await Feedback.find().populate('customerId', 'name');
+    res.render('feedback/index', { feedbacks });
   } catch (err) {
     console.error('Error fetching feedback:', err);
     res.status(500).json({ error: 'Internal Server Error' });

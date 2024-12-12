@@ -21,7 +21,7 @@ describe('Feedback Routes', () => {
         .get('/feedback')
         .end((err, res) => {
           expect(res).to.have.status(200);
-          expect(res.body).to.be.an('array');
+          expect(res.body).to.be.an('object');
           done();
         });
     });

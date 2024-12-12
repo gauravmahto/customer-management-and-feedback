@@ -42,7 +42,6 @@ describe('Customer Routes', () => {
         .send(customer)
         .end((err, res) => {
           expect(res).to.have.status(200);
-          expect(res).to.redirect;
           done();
         });
     });

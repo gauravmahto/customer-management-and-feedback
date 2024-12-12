@@ -11,10 +11,14 @@
     <h1 class="text-2xl font-bold mb-4">Customer Feedback</h1>
     <ul class="space-y-4">
       <% feedbacks.forEach(feedback => { %>
-        <li class="border p-4 rounded-md">
-          <p><strong>Customer:</strong> <%= feedback.customerId.name %></p>
-          <p><strong>Feedback:</strong> <%= feedback.feedback %></p>
-          <p><small><%= feedback.createdAt.toDateString() %></small></p>
+        <li class="border p-4 rounded-md bg-gray-50">
+          <% if (feedback.customerId) { %>
+            <p class="text-lg"><strong>Customer:</strong> <%= feedback.customerId.name %></p>
+          <% } else { %>
+            <p class="text-lg"><strong>Customer:</strong> Unknown</p>
+          <% } %>
+          <p class="text-gray-700"><strong>Feedback:</strong> <%= feedback.feedback %></p>
+          <p class="text-sm text-gray-500"><%= feedback.createdAt.toDateString() %></p>
         </li>
       <% }) %>
     </ul>
