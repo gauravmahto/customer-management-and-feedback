@@ -1,15 +1,15 @@
 import express from 'express';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import customerRoutes from './routes/customerRoutes.js';
 import feedbackRoutes from './routes/feedbackRoutes.js';
 import { connectDB } from './config/database.js';
 import Customer from './models/customer.js';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
-const app = express();
+export const app = express();
 
 // Middleware
 app.use(express.json());
@@ -45,7 +45,7 @@ app.get('/', async (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ?? 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

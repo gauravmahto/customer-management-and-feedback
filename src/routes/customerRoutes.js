@@ -19,6 +19,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { name, email, phone, feedback } = req.body;
+    if (!name || !email || !phone) {
+      return res.status(400).render('customers/index', { customers: [], error: 'Bad Request' });
+    }
+
     const customer = new Customer({ name, email, phone });
     await customer.save();
 
@@ -44,4 +48,5 @@ export default router;
  * @description Routes for managing customers
  * @version 1.0.0
  * @since 2024-12-12
+ * @author gauravmahto
  */

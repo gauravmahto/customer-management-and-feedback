@@ -1,13 +1,13 @@
 {
   "name": "customer-management-and-feedback",
   "version": "1.0.0",
-  "description": "Customer Management and Feedback System",
-  "main": "index.js",
+  "description": "Customer management and feedback application",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "mocha --require @babel/register 'test/**/*.test.js' --exit"
   },
   "repository": {
     "type": "git",
@@ -29,8 +29,11 @@
     "tailwindcss": "^3.3.5"
   },
   "devDependencies": {
-    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.2.0",
+    "@babel/register": "^7.18.9"
   }
 }
