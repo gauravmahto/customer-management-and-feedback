@@ -5,6 +5,8 @@ import customerRoutes from './routes/customerRoutes.js';
 import feedbackRoutes from './routes/feedbackRoutes.js';
 import { connectDB } from './config/database.js';
 import Customer from './models/customer.js';
+import Feedback from './models/feedback.js';
+import { analyzeSentiment, getFeedbackTrends } from './utils/feedbackAnalysis.js';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
@@ -39,10 +41,13 @@ app.use('/feedback', feedbackRoutes);
 app.get('/', async (req, res) => {
   try {
     const customers = await Customer.find();
-    res.render('index', { customers, error: null });
+    const feedbacks = await Feedback.find();
+    const sentimentAnalysis = analyzeSentiment(feedbacks);
+    const feedbackTrends = getFeedbackTrends(feedbacks);
+    res.render('index', { customers, error: null, sentimentAnalysis, feedbackTrends });
   } catch (err) {
     console.error('Error fetching customers:', err);
-    res.render('index', { customers: [], error: 'Internal Server Error' });
+    res.render('index', { customers: [], error: 'Internal Server Error', sentimentAnalysis: {}, feedbackTrends: {} });
   }
 });
 

@@ -1,5 +1,6 @@
 import express from 'express';
 import Feedback from '../models/feedback.js';
+import { analyzeSentiment, getFeedbackTrends } from '../utils/feedbackAnalysis.js';
 
 const router = express.Router();
 
@@ -7,7 +8,9 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const feedbacks = await Feedback.find().populate('customerId', 'name');
-    res.render('feedback/index', { feedbacks });
+    const sentimentAnalysis = analyzeSentiment(feedbacks);
+    const feedbackTrends = getFeedbackTrends(feedbacks);
+    res.render('feedback/index', { feedbacks, sentimentAnalysis, feedbackTrends });
   } catch (err) {
     console.error('Error fetching feedback:', err);
     res.status(500).json({ error: 'Internal Server Error' });

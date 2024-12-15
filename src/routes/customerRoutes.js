@@ -1,6 +1,7 @@
 import express from 'express';
 import Customer from '../models/customer.js';
 import Feedback from '../models/feedback.js';
+import { analyzeSentiment, getFeedbackTrends } from '../utils/feedbackAnalysis.js';
 
 const router = express.Router();
 
@@ -8,10 +9,13 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const customers = await Customer.find();
-    res.render('customers/index', { customers, error: null, success: null });
+    const feedbacks = await Feedback.find();
+    const sentimentAnalysis = analyzeSentiment(feedbacks);
+    const feedbackTrends = getFeedbackTrends(feedbacks);
+    res.render('customers/index', { customers, error: null, success: null, sentimentAnalysis, feedbackTrends });
   } catch (err) {
     console.error('Error fetching customers:', err);
-    res.render('customers/index', { customers: [], error: 'Internal Server Error', success: null });
+    res.render('customers/index', { customers: [], error: 'Internal Server Error', success: null, sentimentAnalysis: {}, feedbackTrends: {} });
   }
 });
 
