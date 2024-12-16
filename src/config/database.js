@@ -21,7 +21,6 @@ export const connectDB = async () => {
 
 /**
  * Database configuration
- * @version 1.0.0
  * @since 2024-12-12
  * @author gauravmahto
  */

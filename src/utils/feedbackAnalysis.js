@@ -29,3 +29,9 @@ export const getFeedbackTrends = (feedbacks) => {
   trends.data = Object.values(feedbackByDate);
   return trends;
 };
+
+/**
+ * @description Routes for managing customer feedback
+ * @since 2024-12-16
+ * @author gauravmahto
+ */

@@ -20,7 +20,6 @@ export default Feedback;
 /**
  * @class Feedback
  * @description Feedback model for managing customer feedback
- * @version 1.0.0
  * @since 2024-12-12
  * @author gauravmahto
  */

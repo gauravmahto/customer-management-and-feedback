@@ -29,7 +29,6 @@ export default Customer;
 /**
  * @class Customer
  * @description Customer model for managing customer data and feedback
- * @version 1.0.0
  * @since 2024-12-12
  * @author gauravmahto
  */

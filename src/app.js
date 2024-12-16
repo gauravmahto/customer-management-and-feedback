@@ -1,13 +1,14 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
+
 import customerRoutes from './routes/customerRoutes.js';
 import feedbackRoutes from './routes/feedbackRoutes.js';
 import { connectDB } from './config/database.js';
 import Customer from './models/customer.js';
 import Feedback from './models/feedback.js';
 import { analyzeSentiment, getFeedbackTrends } from './utils/feedbackAnalysis.js';
-import { fileURLToPath } from 'url';
+import { rootDir } from './constants.js';
 
 dotenv.config();
 
@@ -17,12 +18,9 @@ export const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // Set the view engine to EJS and specify the views directory
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(rootDir, 'views'));
 
 // Connect to MongoDB
 connectDB();
@@ -65,6 +63,5 @@ app.listen(PORT, () => {
 /**
  * @class App
  * @description Express application for customer management and feedback
- * @version 1.0.0
  * @since 2024-12-12
  */

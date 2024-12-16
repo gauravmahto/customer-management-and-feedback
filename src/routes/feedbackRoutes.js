@@ -1,4 +1,5 @@
 import express from 'express';
+
 import Feedback from '../models/feedback.js';
 import { analyzeSentiment, getFeedbackTrends } from '../utils/feedbackAnalysis.js';
 
@@ -37,9 +38,7 @@ router.post('/', async (req, res) => {
 export default router;
 
 /**
- * @class FeedbackRoutes
  * @description Routes for managing customer feedback
- * @version 1.0.0
  * @since 2024-12-12
  * @author gauravmahto
  */

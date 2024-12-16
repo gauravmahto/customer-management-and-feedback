@@ -12,3 +12,10 @@ declare global {
 }
 
 export { };
+
+/**
+ * @class FeedbackRoutes
+ * @description Routes for managing customer feedback
+ * @since 2024-12-12
+ * @author gauravmahto
+ */
